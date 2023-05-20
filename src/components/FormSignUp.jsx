@@ -1,18 +1,41 @@
-import { Button } from "@mui/material";
+import Button from "@mui/material/Button";
+import TextField from "@mui/material/TextField";
+import Container from "@mui/material/Container";
+import FormGroup from "@mui/material/FormGroup";
+import FormControlLabel from "@mui/material/FormControlLabel";
+import Switch from "@mui/material/Switch";
 
 function FormSignUp() {
     return (
         <form>
-            <label>Nombre</label>
-            <input type="text" />
-            <label>Apellidos</label>
-            <input type="text" />
-            <label>Correo electrónico</label>
-            <input type="text" />
-            <label>Promociones</label>
-            <input type="checkbox" />
-            <label>Novedades</label>
-            <input type="checkbox" />
+            <TextField
+                id="name"
+                label="Nombre"
+                variant="outlined"
+                fullWidth
+                margin="normal"
+            />
+            <TextField
+                id="lastname"
+                label="Apellidos"
+                variant="outlined"
+                fullWidth
+                margin="normal"
+            />
+            <TextField
+                id="email"
+                label="Correo"
+                variant="outlined"
+                fullWidth
+                margin="normal"
+            />
+            <FormGroup>
+                <FormControlLabel
+                    control={<Switch defaultChecked />}
+                    label="Promociones"
+                />
+                <FormControlLabel control={<Switch />} label="Novedades" />
+            </FormGroup>
             <Button variant="contained">Registrarse</Button>
         </form>
     );
