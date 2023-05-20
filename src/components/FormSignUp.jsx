@@ -15,29 +15,22 @@ function FormSignUp({ handleSubmit }) {
     const [errors, setErrors] = useState({
         name: {
             error: false,
-            warning: "Deben ser mínimo 3 carácteres",
+            warning: "",
         },
         lastName: {
             error: false,
-            warning: "Deben ser mínimo 3 carácteres",
+            warning: "",
         },
     });
 
     function validarlongitud(valor) {
-        if (valor.length >= 3) {
-            return {
-                name: { error: false, warning: "" },
-                lastName: { error: false, warning: "" },
-            };
-        } else {
-            return {
-                name: { error: true, warning: "Deben ser mínimo 3 carácteres" },
-                lastName: {
-                    error: true,
-                    warning: "Deben ser mínimo 3 carácteres",
-                },
-            };
-        }
+        const error = valor.length < 3;
+        const warning = "Deben ser mínimo 3 caracteres";
+
+        return {
+            name: { error, warning },
+            lastName: { error, warning },
+        };
     }
 
     return (
