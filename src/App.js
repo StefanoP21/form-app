@@ -7,7 +7,7 @@ function App() {
     return (
         <Container component="section" maxWidth="sm">
             <Typography variant="h3" align="center">
-                Formulario registro
+                Formulario Registro
             </Typography>
             <FormSignUp />
         </Container>
