@@ -12,9 +12,33 @@ function FormSignUp({ handleSubmit }) {
     const [prom, setProm] = useState(true);
     const [nov, setNov] = useState(false);
 
-    // useEffect(() => {
-    //     console.log("Nombre cambio a: ", name);
-    // }, [name]);
+    const [errors, setErrors] = useState({
+        name: {
+            error: false,
+            warning: "Deben ser mínimo 3 carácteres",
+        },
+        lastName: {
+            error: false,
+            warning: "Deben ser mínimo 3 carácteres",
+        },
+    });
+
+    function validarlongitud(valor) {
+        if (valor.length >= 3) {
+            return {
+                name: { error: false, warning: "" },
+                lastName: { error: false, warning: "" },
+            };
+        } else {
+            return {
+                name: { error: true, warning: "Deben ser mínimo 3 carácteres" },
+                lastName: {
+                    error: true,
+                    warning: "Deben ser mínimo 3 carácteres",
+                },
+            };
+        }
+    }
 
     return (
         <form
@@ -29,10 +53,15 @@ function FormSignUp({ handleSubmit }) {
                 variant="outlined"
                 fullWidth
                 margin="normal"
+                value={name}
                 onChange={(e) => {
                     setName(e.target.value);
                 }}
-                value={name}
+                error={errors.name.error}
+                helperText={errors.name.error ? errors.name.warning : ""}
+                onBlur={(e) => {
+                    setErrors(validarlongitud(e.target.value));
+                }}
             />
             <TextField
                 id="lastname"
@@ -43,6 +72,13 @@ function FormSignUp({ handleSubmit }) {
                 value={lastName}
                 onChange={(e) => {
                     setLastName(e.target.value);
+                }}
+                error={errors.lastName.error}
+                helperText={
+                    errors.lastName.error ? errors.lastName.warning : ""
+                }
+                onBlur={(e) => {
+                    setErrors(validarlongitud(e.target.value));
                 }}
             />
             <TextField
